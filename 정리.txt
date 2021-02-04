@@ -1,0 +1,44 @@
+Modesl의 Meta는 모델을 정의하진 않고
+모델의 쿼리문? 예를들어 정렬이라던지 기본값이라던지를 정하는거 같다
+https://docs.djangoproject.com/ko/3.0/ref/models/options/ 여기 참조
+
+
+모델필드 타입
+기본적인 문자열, 숫자 말고도
+이메일 필드, URL, 아이피, 외래키 등 여러가지가 있다
+https://docs.djangoproject.com/en/3.0/ref/models/fields/#field-types 참조
+필드들의 차이는 디폴트 적용된 유효성 검사 등의 차이
+같은 모델필드라 해도 DB에 따라 다른 타입이 될수가 있다
+
+유효성 검사같은 경우는 django의 form을 타야 검사를 한다
+데이터를 그냥 넘기면 검사 안함
+
+ManyToManyField / OneToOneField 등 RDBMS에 걸맞는 관계 필드를 정할 수 있다
+
+필드 타입을 타이트하게 지정하는 것이 입력값 오류를 막을 수 있다
+validators들이 다양,타이트하게 지정 할 수 있다
+프론트의 유효성 검사는 사용자 편의, 백엔드의 유효성 검사는 필수
+직접 유효성 검사를 만들지 마라... 이미 django에서 만들어진게 있으니까 그거로 써라
+
+django의 Model은 쿼리를 만들어줄 뿐, 성능을 높이려면 데이터베이스를 공부해라
+
+
+어드민 페이지는 바꾸는게 좋다
+URL reverse
+django-admin-honeypot - 가짜 어드민 페이지
+서비스 초기에 관리도구로서 제격
+관리도구 만들 시간을 줄이고 End user 서비스에 집중
+내부적으로 django form을 적극 사용
+
+static파일
+개발 리소스로서 정적인 파일(js,css,image등)
+Media파일
+FileField/ImageField를 통해 저장한 모든 파일
+DB필드에는 저장경로를 저장하며, 파일은 파일 스토리지에 저장
+실제로는 문자열을 저장한다
+
+
+파이썬 이미지 라이브러리 pillow
+
+uuid로 / upload_to의 경로를 입맛대로 바꿀수있다
+file upload handler / 파일 크기 제한 (2.5mb 미만은 메모리,  2.5mb 이상 디스크로 저장)
