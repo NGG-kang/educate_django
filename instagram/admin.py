@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Post
+from .models import Post, Comment
+
+
 # Register your models here.
 
 @admin.register(Post)
@@ -26,3 +28,7 @@ class PostAdmin(admin.ModelAdmin):
             # mark_safe라는 유틸을 사용하면 태그가 적용된다
             return mark_safe(f'<img src="{post.photo.url}" style="width:75px;" />')
         return None
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass

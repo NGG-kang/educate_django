@@ -28,6 +28,11 @@ urlpatterns = [
 if settings.DEBUG: # 디버그 체크 안해도 스태틱 함수는 자동으로 디버크 체크하여 빈 리스트를 반환한다
                    # 근데 가시성을 위해 넣었다고 한다
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls))
+    ]
+
 
 # settings.MEDIA_URL
 # settings.MEDIA_ROOT
