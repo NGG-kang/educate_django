@@ -5,6 +5,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     photo = models.ImageField(blank=True, upload_to="instagram/post/%Y/%m/%d")
+    tag_set = models.ManyToManyField('Tag', blank=True)
     # upload_to를 사용하여 위치 지정이 가능하다
     # 동일한 media폴더로 시작하나 경로명이 달라짐
     # 동일 이름도 자동으로 더미 이름을 붙혀준다
@@ -28,3 +29,12 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    # post_set = models.ManyToManyField(Post)
+    # M:N 관계에서는 어느쪽에서든 필드 지정 가능하다
+
+    def __str__(self):
+        return self.name
