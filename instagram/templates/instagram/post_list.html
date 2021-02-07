@@ -1,12 +1,28 @@
-<!Doctype html>
+
+{% load bootstrap4 %}
+{% load static %}
+
+
+<!doctype html>
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Instagran / Post List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        @media (max-witdh: 600px) {
+            body {
+                background-color: green;
+            }
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'instagram/css/bootstrap.css" />
+    <script src="{% static 'instagram/js/bootstrap.js' %}"></script>
+    <script src="{% static 'instagram/js/jquery-3.5.1.js' %}"></script>
 </head>
 <body>
-    <form action"" method="get">
+    <form action method="get">
         <input type="text" name="q" value="{{ q }}"/>
         <input type="submit" value="검색"/>
     </form>
@@ -14,7 +30,11 @@
         <tbody>
             {% for post in post_list %}
             <tr>
-                <td>{{ post.message }}</td>
+                <td>{{ post.pk }}</td>
+                <td><a href="{{ post.get_absolute_url }}">
+                    {{ post.message }}
+                </a>
+                </td>
                 {% if post.photo %}
                     <td><img src="{{ post.photo.url }}" /></td>
                 {% else %}
@@ -24,5 +44,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% if is_paginated %}
+        {% bootstrap_pagination page_obj size="large" justify_content="center" %}
+    {% endif %}
 </body>
 </html>

@@ -11,8 +11,8 @@ urlpatterns = [
     ), name='root'),
     path('admin/', admin.site.urls),
     path('blog1/', include('blog1.urls')),
-    path('instagram', include('instagram.urls')),
-    path('accounts', include('accounts.urls')),
+    path('instagram/', include('instagram.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 # 이미지 출력

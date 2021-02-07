@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # third apps
     'django_extensions',
     'debug_toolbar',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_DRIS = [
+    os.path.join(BASE_DIR, 'django_practice', 'static'),
+]
 MEDIA_URL = '/media/' # 각 media 파일에 대한 url설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 실제 파일을 저장할 Root 경로
 
