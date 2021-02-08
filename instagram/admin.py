@@ -17,6 +17,7 @@ class PostAdmin(admin.ModelAdmin):
     # 어드빈 오브젝트 검색 기능
     search_fields = ['message']
 
+
     # models의 self딴에서도 할 수 있으나 어드민에서도 지정이 가능하다
     # post로 넘어오므로 self, post로 지정해야한다
     def message_length(self, post):

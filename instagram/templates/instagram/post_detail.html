@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Author: {{ post.author }}</h2>
+{% extends "instagram/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Instagram
+{% endblock title %}
+
+{% block content %}
+<h2>Author: {{ post.author }}</h2>
 {% if post.photo %}
-    <img src="{{ post.photo.url }}" />
+<img src="{{ post.photo.url }}"/>
 {% endif %}
-    <h3>{{ post.message }}</h3>
-</body>
-</html>
+<h3>{{ post.message|linebreaks }}</h3>
+<a href="{% url 'instagram:post_list' %}" class="btn btn-primary">목록</a>
+<a href="{% url 'instagram:post_edit' post.id %}" class="btn btn-info">수정</a>
+<a href="{% url 'instagram:post_delete' post.id %}" class="btn btn-danger">삭제</a>
+{% endblock content %}

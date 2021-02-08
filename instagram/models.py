@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.db import models
+from django.core.validators import MinLengthValidator
 # Create your models here.
 from django.urls import reverse
 
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    message = models.TextField()
+    message = models.TextField(validators=[MinLengthValidator(10)])
     photo = models.ImageField(blank=True, upload_to="instagram/post/%Y/%m/%d")
     tag_set = models.ManyToManyField('Tag', blank=True)
     # upload_to를 사용하여 위치 지정이 가능하다
@@ -16,6 +17,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     models.OneToOneField
+
     def __str__(self):
         return self.message
 

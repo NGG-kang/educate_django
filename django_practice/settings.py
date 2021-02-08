@@ -138,3 +138,11 @@ MEDIA_URL = '/media/' # 각 media 파일에 대한 url설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 실제 파일을 저장할 Root 경로
 
 INTERNAL_IPS = ['127.0.0.1']
+
+
+from django.contrib.messages import constants as messages_contants
+
+MESSAGE_TAGS = {
+    messages_contants.DEBUG: 'secondary',
+    messages_contants.ERROR: 'danger',
+}

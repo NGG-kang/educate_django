@@ -10,8 +10,11 @@ register_converter(DayConverter, 'day')
 app_name = 'instagram' # URL reverse 에서 namespace 역할을 하게 된다
 
 urlpatterns=[
+    path('new/', views.post_new, name="post_new"),
     path('', views.post_list, name='post_list'),
     path('<int:pk>/', views.PostDetailView.as_view(), name="post_detail"),
+    path('<int:pk>/edit', views.post_edit, name="post_edit"),
+    path('<int:pk>/delete', views.post_delete, name="post_delete"),
     # path('/archives/<int:year>/', views.archives_year),
     # re_path(r'archives/(?P<year>\d{4})/', views.archives_year)
     # path('archives/<year:year>/', views.archives_year),
