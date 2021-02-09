@@ -1,0 +1,12 @@
+{% extends "accounts/layout.html" %}
+
+{% block content %}
+    <h2>User : {{ user }}</h2>
+{% if user.profile %}
+    <ul>
+        <li>{{ user.profile.zipcode }}</li>
+        <li>{{ user.profile.address }}</li>
+    </ul>
+{% endif %}
+<a href="{% url 'profile_edit' %}">프로필 수정</a>
+{% endblock %}

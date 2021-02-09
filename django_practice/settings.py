@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -138,8 +140,8 @@ MEDIA_URL = '/media/' # 각 media 파일에 대한 url설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 실제 파일을 저장할 Root 경로
 
 INTERNAL_IPS = ['127.0.0.1']
-
-
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 from django.contrib.messages import constants as messages_contants
 
 MESSAGE_TAGS = {
